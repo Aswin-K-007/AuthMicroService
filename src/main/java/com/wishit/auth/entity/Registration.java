@@ -1,7 +1,6 @@
 
 	package com.wishit.auth.entity;
 	import jakarta.persistence.*;
-	import java.time.LocalDateTime;
 
 	@Entity
 	@Table(name = "users")
@@ -19,7 +18,8 @@
 	    private String password;
 
 	 
-
+	    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	    private UserProfile profile;
 	    
 	    
 	    
