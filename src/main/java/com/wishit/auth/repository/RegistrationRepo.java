@@ -8,4 +8,5 @@ import com.wishit.auth.entity.Registration;
 
 public interface RegistrationRepo extends JpaRepository<Registration, Long> {
 	  Optional<Registration> findByEmailAndPassword(String email, String password);
+	  Optional<Registration> findById(Long id);
 }

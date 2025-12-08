@@ -11,9 +11,11 @@ import com.wishit.auth.repository.RegistrationRepo;
 public class RegistrationService {
 
 	 private final RegistrationRepo repository;
+	 private final UserProfileService userProfileService;
 
-	    public RegistrationService(RegistrationRepo repository) {
+	    public RegistrationService(RegistrationRepo repository, UserProfileService userProfileService) {
 	        this.repository = repository;
+	        this.userProfileService = userProfileService;
 	    }
 
 	    public Registration registerUser(Registration user) {
@@ -23,6 +25,8 @@ public class RegistrationService {
 	    	    
 	    	}
 
-	        return repository.save(user);
+	        Registration savedUser = repository.save(user);
+	        userProfileService.addUserProfile(null, savedUser);
+	        return savedUser;
 	    }
 	}

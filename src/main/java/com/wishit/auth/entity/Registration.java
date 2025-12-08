@@ -1,6 +1,10 @@
 
 	package com.wishit.auth.entity;
-	import jakarta.persistence.*;
+	import java.sql.Timestamp;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.*;
 
 	@Entity
 	@Table(name = "users")
@@ -17,6 +21,8 @@
 	    @Column(nullable=false)
 	    private String password;
 
+	    @CreationTimestamp
+		private Timestamp joinedOn;
 	 
 	    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	    private UserProfile profile;
@@ -34,10 +40,10 @@
 
 	    public String getPassword() { return password; }
 	    public void setPassword(String password) { this.password = password; }
-
 	    
-	    
-	    
+		public Timestamp getJoinedOn() { return joinedOn; }
+		public void setJoinedOn(Timestamp joinedOn) { this.joinedOn = joinedOn; }
+   
 	}
 
 	
