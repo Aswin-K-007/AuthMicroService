@@ -1,7 +1,7 @@
 package com.wishit.auth.dto;
 
 public class RegistrationDTO {
-	private Name name;
+	private NameDTO name;
     private Integer age;
     private String email;
     private Long mobileNo;
@@ -9,10 +9,10 @@ public class RegistrationDTO {
     private String city;
     private String password;
     
-	public Name getName() {
+	public NameDTO getName() {
 		return name;
 	}
-	public void setName(Name name) {
+	public void setName(NameDTO name) {
 		this.name = name;
 	}
 	public Integer getAge() {
@@ -51,29 +51,4 @@ public class RegistrationDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-}
-
-
-class Name{
-	private String firstName;
-    private String middleName;
-    private String lastName;
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getMiddleName() {
-		return middleName;
-	}
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}  
 }

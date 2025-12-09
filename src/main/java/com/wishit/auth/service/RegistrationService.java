@@ -2,6 +2,7 @@ package com.wishit.auth.service;
 
 import org.springframework.stereotype.Service;
 
+import com.wishit.auth.dto.NameDTO;
 import com.wishit.auth.dto.ProfileDTO;
 import com.wishit.auth.dto.RegistrationDTO;
 import com.wishit.auth.entity.Registration;
@@ -28,15 +29,18 @@ public class RegistrationService {
 	    	
 	    	Registration newUser = new Registration();
 	    	newUser.setEmail(regDTO.getEmail());
-	    	newUser.setName(regDTO.getName().toString());
+	    	NameDTO userName = regDTO.getName();
 	    	newUser.setPassword(regDTO.getPassword());
+	    	newUser.setName(userName.toString());
 	    	
 	    	ProfileDTO profileDTO = new ProfileDTO();
 	    	profileDTO.setAge(regDTO.getAge());
 	    	profileDTO.setCity(regDTO.getCity());
 	    	profileDTO.setGender(regDTO.getGender());
 	    	profileDTO.setMobileNo(regDTO.getMobileNo());
-	    	profileDTO.setFirstName(regDTO.getName());
+	    	profileDTO.setFirstName(userName.getFirstName());
+	    	profileDTO.setMiddleName(userName.getMiddleName());
+	    	profileDTO.setLastName(userName.getLastName());
 	    	
 	        Registration savedUser = repository.save(newUser);
 	        userProfileService.addUserProfile(null, savedUser);
