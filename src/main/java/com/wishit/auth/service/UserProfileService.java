@@ -14,6 +14,7 @@ public class UserProfileService {
 
 	@Autowired
 	UserProfileRepository userProfileRepo;
+	@Autowired
 	RegistrationRepo regRepo;
 	
 	public ProfileDTO getUserProfile(Long userId) {
@@ -26,6 +27,7 @@ public class UserProfileService {
 
         ProfileDTO dto = new ProfileDTO();
         dto.setFirstName(profile.getFirstName());
+        dto.setMiddleName(profile.getMiddleName());
         dto.setLastName(profile.getLastName());
         dto.setEmail(profile.getEmail());
         dto.setProfilePic(profile.getProfilePic());
@@ -42,17 +44,17 @@ public class UserProfileService {
 	
 	public ResponseEntity<?> addUserProfile(ProfileDTO profileDTO, Registration user) {
 		UserProfile profile = new UserProfile();
-		profile.setAge(profileDTO.getAge());
-		profile.setFirstName(profileDTO.getFirstName());
-		profile.setLastName(profileDTO.getLastName());
 		profile.setUser(user);
-		profile.setGender(profileDTO.getGender());
-		profile.setCity(profileDTO.getCity());
-		profile.setMobileNo(profileDTO.getMobileNo());
 		profile.setEmail(user.getEmail());
+		profile.setAge(profileDTO.getAge());
+		profile.setCity(profileDTO.getCity());
+		profile.setGender(profileDTO.getGender());
+		profile.setMobileNo(profileDTO.getMobileNo());
+		profile.setFirstName(profileDTO.getFirstName());
+		profile.setMiddleName(profileDTO.getMiddleName());
+		profile.setLastName(profileDTO.getLastName());
 		
-		userProfileRepo.save(profile);
-		return null;
+		return ResponseEntity.ok(userProfileRepo.save(profile));
 	}
 	
 	

@@ -42,8 +42,12 @@ public class RegistrationService {
 	    	profileDTO.setMiddleName(userName.getMiddleName());
 	    	profileDTO.setLastName(userName.getLastName());
 	    	
+	    	
+	    	System.out.println(profileDTO.toString());
+	    	System.out.println(profileDTO.getMiddleName());
+	    	
 	        Registration savedUser = repository.save(newUser);
-	        userProfileService.addUserProfile(null, savedUser);
+	        userProfileService.addUserProfile(profileDTO, savedUser);
 	        return savedUser;
 	    }
 	}
