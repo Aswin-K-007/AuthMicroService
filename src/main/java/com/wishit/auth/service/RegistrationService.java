@@ -22,9 +22,8 @@ public class RegistrationService {
 
 	    public Registration registerUser(RegistrationDTO regDTO) {
 	      
-	    	if (repository.findByEmailAndPassword(regDTO.getEmail(), regDTO.getPassword()).isPresent()) {
-	    	    throw new RuntimeException("Email already in use");
-	    	    
+	    	if (repository.findByEmail(regDTO.getEmail()).isPresent()) {
+	    	    throw new RuntimeException("Email already in use");   
 	    	}
 	    	
 	    	Registration newUser = new Registration();
@@ -41,10 +40,6 @@ public class RegistrationService {
 	    	profileDTO.setFirstName(userName.getFirstName());
 	    	profileDTO.setMiddleName(userName.getMiddleName());
 	    	profileDTO.setLastName(userName.getLastName());
-	    	
-	    	
-	    	System.out.println(profileDTO.toString());
-	    	System.out.println(profileDTO.getMiddleName());
 	    	
 	        Registration savedUser = repository.save(newUser);
 	        userProfileService.addUserProfile(profileDTO, savedUser);
